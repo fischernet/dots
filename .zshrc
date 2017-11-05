@@ -108,6 +108,4 @@ source $ZSH/oh-my-zsh.sh
 
 neofetch --ascii ~/.config/rice/ascii/icon --ascii_colors 3
 
-alias dotfiles='/usr/bin/git --git-dir=/home/fischer/.cfg/ --work-tree=/home/fischer'
-
-alias config='/usr/bin/git --git-dir=/home/fischer/.cfg/ --work-tree=/home/fischer'
+alias dots='/usr/bin/git --git-dir=/home/fischer/.cfg/ --work-tree=/home/fischer'
