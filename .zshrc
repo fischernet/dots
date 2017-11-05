@@ -106,6 +106,6 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-neofetch --ascii ~/.config/rice/ascii/icon --ascii_colors 3
+neofetch --caca ~/Pictures/avatar_1.png 
 
 alias dots='/usr/bin/git --git-dir=/home/fischer/.cfg/ --work-tree=/home/fischer'
