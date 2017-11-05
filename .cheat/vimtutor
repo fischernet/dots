@@ -1,0 +1,88 @@
+# delete a char under cursor
+x
+
+# put back deleted text after the cursor
+p 
+
+# insert text under cursor
+i
+
+# adelete 
+c - change
+r - replace char
+# replace mode like insert mode but every char typed deletes existing char
+R - replace more than 1 char 
+
+# cmds
+/word - search word (n=fwd, N=bk)
+?word - search word bk
+CTRL+O - go back to beginning
+CTRL-o - '     ' in increments
+CTRL+L - go fwd 
+
+# motions
+w - until start of 1st word, excluding 1st char
+e - until end of 1st word, including last char
+$ - end of line, including last char
+
+# operating on dints
+dd - deletes whole line 
+d$ - deletes to end of line
+
+# undo
+u - undos change 
+U - undos changes to whole line
+CTRL+R - undos all undos
+
+# cursor location & file status
+CTRL+G - show location
+CTRL+G+n - (same as :line n) jump to 'n' line
+gg - beginning
+G - end
+
+# matching parenth search
+% - find matching (,{,[
+
+# substitute cmd
+:s/old/new/ - change 1st occurence (in line) 
+:s/old/new/g - change global occurence (in line)
+:#,#s/old/new/g - change b/t line #-#
+:%s/old/new/g - change all occurrence in file 
+:%s/old/new/gc - change all occurrencecs in file w/ prompt
+
+# execute external cmd
+:!
+
+# writing to file
+:! w TEST
+
+# visual mode
+# selecting text to write to file
+v, move cursor, then ':'
+# :<'> will appear
+w TEST  
+
+# retrieving and merging files
+# insert contents of a file
+# merges filename contents to working file
+:r filename
+
+# also can be used to cat contents from term
+:r !ls
+
+# open cmd
+o - opens line below cursor (then switches to INSERT mode)
+O - '	       above 					'
+
+# append cmd
+a - insert text after the cursor
+A - insert text at end of line
+
+# copy and paste text
+visual 'v' mode, 
+y - yank/copy
+p - paste
+
+# ignore case 
+# set an option so a search/substitue ignore case  
+

@@ -1,0 +1,7 @@
+# updates hosts
+python3 updateHostsFile.py -r -i 0.0.0.0 -e porn social gambling
+
+# hard rest if git stash doesn't work
+git fetch --all
+git reset --hard origin/master
+

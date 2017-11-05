@@ -1,0 +1,202 @@
+# advanced: multiple servers
+# connect to server under socket name "moo" and attach a new session;
+# create server if none already exists for socket
+tmux -L moo
+
+# attempt to re-attach a session if one exists
+tmux -L moo attach
+
+# how servers are "named"
+# default name for server = default
+# stored as a socket in /tmp
+# can be overwritten via setting the TMUx_TMPDIR env var
+$ export TMUX_TMPDIR=$HOME
+$ tmux
+# creates a tmux dir w/in $HOME folder
+
+# clients
+# retrieve a list of active client connections
+tmux list-clients
+
+# clipboard
+# copy mode - text can be selected and copied to the 'paste buffer', tmux's clipboard
+Prefix + [
+# w/in use [space] to enter copy mode
+# use arrow keys to adjust the text to be selected
+# press [enter] to copy the selected text
+
+# sessions
+
+# start a new session
+$ tmux
+$ tmux new-session
+$ tmux new-session -s 'name'
+
+# attach
+tmux a 
+tmux a -t sessioname
+
+# switch sessions from w/in tmux
+prefix+( # switch attached client to prev session
+prefix+) # switch attached client to next session 
+prefix+L # switch attached client to last session
+prefix+s # select a new session interactively
+$ tmux switch-client -t dev
+
+# renaming a session 
+prefix+$
+$ tmux rename-session -t 1 "my session" 
+
+# does my session exist?
+$ tmux has-session -t 1
+
+# windows
+
+# hold panes; they reside w/in a session
+# have layouts, which can be one of many preset dimensions;
+# or a custom one done through pane resizing
+# you can see the current windows through the status bar at the bottom of tmux
+
+# rename windows
+prefix+,
+
+# traversing windows
+prefix+p
+prefix+n
+prefix+1,2,3 ... n
+# prompt for a window index
+prefix+'
+# search + traverse windows for txt
+prefix+f
+# bring the last selected window
+prefix+l
+# list of current windows 
+prefix+w
+# moving windows 
+$ tmux move-window
+# move current window to number 2
+$ tmux movew -t2
+# move windows 2 to window 1
+$ tmux movew -s2 -t
+# shortcut to prompt for an index to move the current window
+prefix+.
+
+# layouts
+# switch window layouts
+# even-horizontal, even-vertical, main-horizontal, main-vertial, tiled
+prefix+space
+# specific touch-ups can be done via resizing panes
+# to reset proportions of the layout (such as after splitting or resizing panes);
+# run following cmd
+$ tmux select-layout
+# this is diff behavior than some tm b/c they auto handle proportions 
+
+# closing windows
+prefix+x
+cntrl+d
+$ tmux kill-window
+# prompt closure (destroys all window panes, along w/ processes w/in them)
+prefix+&
+# killing a window from the outside, use a target of the window index
+$ tmux kill-window -t2 
+
+# panes
+# are pseudoterminals encapsulating shells (eg. bash, zsh)  reside w/in a window
+# split horizontally
+prefix+% 
+$ tmux split-window -h
+# split vertically
+prefix+"
+$ tmux split-window -h 
+
+# create pane horizontally, $HOME directory, 50% width of current pane
+$ tmux split-window -h -c $HOME -p 50 vim
+
+# create new pane, split vertically with 75% height
+tmux split-window -p 75
+
+# traversing panes
+# move to the prev active pane
+prefix+;
+# change to above pane
+prefix+up,down, left, right
+# select the next pane in the current window
+prefix+o
+
+# zoom in panes
+prefix+z
+
+# resizing panes
+prefix M-Up # resize-pane -U 5
+prefix M-Down # resize-pane -D 5
+prefix M-Left # resize-pane -L 5
+prefix M-Right # resize-pane -R 5
+prefix C-Up # resize-pane -U
+prefix C-Down # resize-pane -D
+prefix C-Left # resize-pane -L
+prefix C-Right # resize-pane -R 
+
+# tmux prompt 
+Prefix+:
+
+# reloading config
+# reload only re-runs the config file
+# != reset keybindings/styling you apply to tmux
+:source /path/to/config.conf
+$ tmux source-rfile /path/to/config.conf
+
+# tmux confi are processed just like 'run commands' in ~/zshrc or /bashrc
+# config files - equivalent (w/in terminal & config file)
+$ tmux bind-key a send-prefix
+bind-key a send-prefix
+
+# tmux various config options
+# server options
+set-option -s
+# global session
+set-option -g
+# window options
+set-window-option -g 
+
+# tmux config - server options
+set-option -s option value
+# tweak timing b/t key sequences
+set -s escape-time 0 
+# terminal coloring 
+# useful if you're having issues w/ color detail in tmux
+set -g default-terminal "screen-256color"
+
+# tmux config - session options
+# start window counting at 1, rather than default 0
+set -g base-index 1
+# setting base-index assures newly created windows start at 1 and count upwards
+
+# tmux config - window options
+# set either via the following:
+set-option -w
+set-window-option 
+# automatic window naming
+# alters the name of the window based upon its active pane
+set-window-option -g automatic-rename
+
+# vi copy-paste keys
+set-window-option -g mode-keys vi
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
+
+#hjkl/vi-like pane traversal
+# moving directionally w/ vim across panes in a window
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# status bar and styling
+# toggling status line
+$ tmux set-option status off
+$ tmux set-option status on
+# bind toggling status line
+bind-key q set-option status
+prefix+q
+
+

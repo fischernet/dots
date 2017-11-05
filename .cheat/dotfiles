@@ -1,0 +1,33 @@
+# source: https://medium.hackinrio.com/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b
+
+# 1 - Bootstrapping 
+# creates a folder ~/.cfg which is a Git bare repository that will track our files. 
+git init --bare $HOME/.dotfiles
+
+# create an alias 'dotfiles'  which we will use instead of the regular git when we want to 
+# interact with our configuration repository.
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# set a flag - local to the repository - to hide files we are not explicitly tracking yet. 
+dotfiles config --local status.showUntrackedFiles no
+
+# add the alias to .bashrc (or .zshrc) so you can use it later
+echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.zshrc
+
+# use regular git cmd to manage dotfiles
+dotfiles status
+dotfiles add .Xresources
+#dotfiles remote add <name> <url>
+dotfiles remote add origin <url>
+dotfiles push origin master
+
+# 2 - Replicating
+
+# clone github repo
+git clone --bare https://github.com/USERNAME/dotfiles.git $HOME/.dotfiles
+
+# define the alias in the current shell scope
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# checkout the actual content from the git repository to your $HOME
+dotfiles checkout

@@ -1,0 +1,18 @@
+# adb:  (android debug mode) toolkit included in the Android SDK package. It consists of both client and server-side programs that communicate with one anothe
+
+# locates and init adb devices on usb serial connxn
+./adb devices
+
+# installs apk on connected device based on provided dir
+./adb install '/home/webonise/Downloads/some.apk'
+
+# copies a file from host to connected device
+./adb push '/home/webonise/Downloads/one.jpg' '/sdcard/Download/'
+
+# fastboot:   diagnostic protocol included with the SDK package used primarily to modify the flash filesystem via a USB connection from host computer. 
+# It requires that the device be started in a boot loader or Secondary Program Loader mode, 
+# 1) flash – rewrites a partition with a binary image stored on the host computer
+# 2) erase – erases a specific partition
+# 3) reboot – reboots the device into either the main operating system, the system recovery partition or back into its boot loader
+# 4) devices – displays a list of all devices (with the serial number) connected to the host computer
+# 5) ormat – formats a specific partition; the file system of the partition must be recognized by the device

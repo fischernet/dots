@@ -1,0 +1,246 @@
+#=======================================
+#   .Xresources              
+#=======================================
+
+# basic colors
+set_from_resource $white #ffffff #000000
+set_from_resource $true_black #000000 #000000
+
+set_from_resource $black color0 #000000
+set_from_resource $red color1 #000000
+set_from_resource $green color2 #000000
+set_from_resource $yellow color3 #000000
+set_from_resource $blue color4 #000000
+set_from_resource $magenta color5 #000000
+set_from_resource $cyan color6 #000000
+set_from_resource $white color7 #000000
+set_from_resource $fground color8 #000000 
+
+#=======================================
+#   colors                 
+#=======================================
+
+## COLORS ##		BD       BG      FG      IND  Child_BD
+client.focused          $black  $yellow  $black  $red  
+client.unfocused        $cyan   $black   $yellow $red	 
+client.focused_inactive $black  $black   $yellow $red 
+client.urgent           $black  $red     $black  $red
+client.background       $black
+
+#=======================================
+#   custom keybindings                  
+#=======================================
+
+bindsym $mod+shift+x exec i3lock -i $HOME/Pictures/wallpaper.png
+bindsym $mod+Shift+q kill
+
+# keybindings
+bindsym $mod+d exec "rofi -show combi -combi-modi window,drun -modi combi,run,ssh -bw 0"
+bindsym $mod+c exec buku_run 
+bindsym $mod+Return exec urxvt -lsp 1
+
+# default workspaces use 'xprop'
+assign[class="Firefox"] $workspace4
+
+# mpv floating window 
+for_window [class="mpv"] floating enable
+
+#=======================================
+#   default keybindings                 
+#=======================================
+
+# set $mod
+set $mod Mod4
+
+# mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+backslash split h
+
+# split in vertical orientation
+bindsym $mod+minus split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+#=======================================
+#   font                    
+#=======================================
+
+font pango:FiraCode-Retina, Bold 13px 
+
+#=======================================
+#   media keys                  
+#=======================================
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+#=======================================
+#   system/startup                
+#=======================================
+
+# i3 Gaps
+for_window [class="^.*"] border pixel 3 
+gaps inner 6 
+gaps outer 6 
+
+# change gaps dynamically
+bindsym $mod+p gaps inner current plus 5
+bindsym $mod+Shift+p gaps inner current minus 5
+
+# reload the configuration file
+bindsym $mod+Shift+c reloadx
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+exec_always feh --bg-fill $HOME/Pictures/wallpaper.png
+exec --no-startup-id xss-lock -- i3lock -i $HOME/Pictures/wallpaper.png
+exec_always compton -f
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id nm-applet
+exec --no-startup-id redshift-gtk
+
+# modmap (only tkl/win-based, uncomment on mac)
+exec_always  xmodmap ~/.xmodmaprc
+
+#=======================================
+#   workspaces                  
+#=======================================
+
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+# assign workspace to specific display outputs
+#workspace $workspace1 output eDP1
+#workspace $workspace2 output eDP1
+#workspace $workspace3 output eDP1
+#workspace $workspace4 output eDP1
+#workspace $workspace5 output eDP1
+#workspace $workspace6 output HDMI1
+#workspace $workspace7 output HDMI1
+#workspace $workspace8 output HDMI1
+#workspace $workspace9 output HDMI1
+#workspace $workspace0 output HDMI1
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# cycle workspaces 
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+## 
+bindcode $mod+87 workspace $workspace1
+bindcode $mod+88 workspace $workspace2
+bindcode $mod+89 workspace $workspace3
+bindcode $mod+83 workspace $workspace4
+bindcode $mod+84 workspace $workspace5
+bindcode $mod+85 workspace $workspace6
+bindcode $mod+79 workspace $workspace7
+bindcode $mod+80 workspace $workspace8
+bindcode $mod+81 workspace $workspace9
+bindcode $mod+90 workspace $workspace10

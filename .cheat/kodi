@@ -1,0 +1,39 @@
+# set EDITOR path
+export EDITOR=vim
+
+# ssh into libreelec
+ssh root@192.168.1.133
+
+# refresh ssh keys (fixes warning)
+ssh-keygen -R 192.168.1.133
+
+# smb into libreelec (no access to hidden files, only main directories)
+cmd+k (go to sever) 
+smb://192.168.1.133 
+
+# before cp, clear gui.settings; otherwise old config will persist! 
+# src: https://xbmcnut.blogspot.ca/2015/09/how-to-retain-your-gui-settings-in-kodi.html
+systemctl stop kodi.service
+
+# kodi from host (src) to libreelec (dst) (nb: scp overwrites when cp, src/. syntax copies hidden files)
+# src/. syntax is required to overwrite pre-existing files; otherwise, a new dir. is created
+scp -rp /Users/rybka/Library/Application\ Support/Kodi/. root@192.168.1.133:/storage/.kodi
+
+# sql refresh db (ie. clear watched status); queries for MyVideos##
+# dir. ~/userdata/profiles/Chinese/Databases/MyVideos99.db
+# sqlite studio presents results of last query only
+UPDATE files SET lastplayed = '';
+UPDATE files SET playcount = '';
+UPDATE settings SET resumetime = '';
+DELETE FROM bookmark WHERE type = '1';
+
+# zip kodi directory (builtin archive-utility doesn't work)
+zip -r -0 nameofzip.zip nameofdir
+
+# workaround copy-paste in UNIX (native support in macOS & windows)
+sleep 5 && xdotool type 'string goes here'
+
+# update libreelec using cli
+# navigate to /storage/.update, check if any files using ls -la
+wget http://releases.libreelec.tv/LibreELEC-RPi2.arm-8.X.X.img.gz
+reboot

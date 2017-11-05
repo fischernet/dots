@@ -1,0 +1,600 @@
+g======================================
+; colors
+;======================================
+
+[colors]
+black   = ${xrdb:color0}
+red     = ${xrdb:color1}
+green   = ${xrdb:color2}
+yellow  = ${xrdb:color3}
+blue    = ${xrdb:color4}
+magenta = ${xrdb:color5}
+cyan    = ${xrdb:color6}
+white   = ${xrdb:color7}
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+true_black = #ff000000 
+
+;======================================
+; global settings
+;======================================
+
+[global/wm]
+
+margin-top = 5
+margin-bottom = 5
+
+;======================================
+; top bar
+;======================================
+
+[bar/top]
+monitor = eDP1
+bottom = false
+Fixed-center = true
+
+width = 100%
+height = 2%
+dock = false
+
+offset-x = 0
+offset-y = 0
+
+background = ${colors.black}
+foreground = ${colors.yellow}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+
+border-bottom = 2
+border-bottom-color = ${colors.background}
+
+;spacing = 1 
+;padding-left = 0
+;padding-right = 0
+;module-margin-left = 2
+;module-margin-right = 2
+
+font-0 = FiraCode-Retina:pixelsize=12:weight=bold;2
+font-1 = FiraCode-Retina:pixelsize=15;2
+font-2 = FontAwesome:pixelsize=13;3
+font-3 = MaterialIcons:size=14;5
+
+modules-left = i3 xwindow arrow9
+modules-center = arrow8 mpd mpd2 mpd3 arrow7
+modules-right = arrow6 filesystem arrow5 memory arrow4 date2 arrow3 date arrow2 battery arrow1 volume 
+
+tray-position = right
+tray-padding = 2
+tray-transparent = false
+tray-background = ${colors.true_black}  
+
+;======================================
+; modules
+;======================================
+
+[module/arrow1]
+; trueblack to red
+type = custom/text
+content = " "
+content-font = 2 
+content-foreground = ${colors.true_black}
+content-background = ${colors.red}
+
+[module/arrow2]
+; red to green
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.red}
+content-background = ${colors.green}
+
+[module/arrow3]
+; White to Red
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.green}
+content-background = ${colors.white}
+
+[module/arrow4]
+; Red to Magenta
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.white}
+content-background = ${colors.magenta}
+
+[module/arrow5]
+; magenta to blue 
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.magenta}
+content-background = ${colors.blue}
+
+[module/arrow6]
+; blue to black 
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.blue}
+content-background = ${colors.black}
+
+[module/arrow7]
+; black to yellow 
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.black}
+content-background = ${colors.yellow}
+
+[module/arrow10]
+; cyan to green 
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.cyan}
+content-background = ${colors.green}
+
+
+[module/arrow8]
+; true_black to black
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.black}
+content-background = ${colors.true_black}
+
+[module/arrow9]
+; yellow  to black
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.yellow}
+content-background = ${colors.black}
+
+;=============== backlight ==============
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+format = <ramp>
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = 
+bar-fill = ▐
+bar-empty = ▐
+bar-foreground-0 = #55aa55
+bar-foreground-1 = #557755
+bar-foreground-2 = #f5a70a
+bar-foreground-3 = #ff5555
+bar-empty-foreground = #444444
+
+;=============== battery ==============
+
+[module/battery]
+
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 99
+
+format-charging = <animation-charging> <label-charging>
+format-charging-background = ${colors.red}
+label-charging-foreground = ${colors.true_black}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${colors.red}
+label-discharging-foreground = ${colors.true_black}
+
+format-full = <ramp-capacity><label-full>
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 =  
+ramp-capacity-foreground = ${colors.true_black}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 =  
+
+animation-charging-foreground = ${colors.true_black} 
+
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+
+!=============== cpu ==================
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+
+format = <label> <bar-used>
+; format = <label> 
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+;=============== date =================
+
+[module/date]
+
+type = internal/date
+date =  %H:%M:%S
+format = <date>
+format-background = ${colors.green} 
+
+label-foreground = ${colors.true_black}
+
+[module/date2]
+
+type = internal/date
+date = %y-%m-%d 
+format = <date>
+format-background = ${colors.white} 
+
+label-foreground = ${colors.true_black}
+
+;=============== net ==================
+
+[module/wireless-network]
+
+type = internal/network
+interface = wls8
+interval = 3.0
+udspeed-minwidth = 1 
+accumulate-stats = true
+
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <ramp-signal> <label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected = %upspeed% 
+label-connected-foreground = ${colors.true_black}
+label-connected-background = ${colors.green}
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+; Default: (none)
+label-disconnected = not connected
+label-disconnected-foreground = #66ffffff
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %linkspeed% [wired]
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+;============= filesystem =============
+[module/filesystem]
+
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+format-mounted = <label-mounted>
+label-mounted =  %free%
+
+label-unmounted = %mountpoint%: not mounted
+label-unmounted-foreground = #55
+label-mounted-background = ${colors.blue} 
+label-mounted-foreground = ${colors.true_black}
+
+
+;=============== i3 ===================
+
+[module/i3]
+foreground = ${xrdb:color11}
+
+type = internal/i3
+format = <label-state>
+
+index-sort = true
+strip-wsnumbers = true
+reverse-scroll = false
+; font-awesome
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 10;10 
+
+label-focused = %{F#000000}%icon%%{F#cc} 
+label-focused-background = ${colors.cyan}
+;label-focused-underline= ${colors.yellow}
+label-focused-padding = 1 
+
+label-unfocused = %icon%
+label-unfocused-background = ${colors.true_black}
+label-unfocused-padding = 1 
+
+;label-urgent = %icon%
+label-urgent = %{F#000000}%icon%%{F#cc} 
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1 
+
+!============== memory ================
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3
+
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+format = <label> 
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label =  %percentage_used%%
+label-foreground = ${colors.true_black}
+label-background = ${colors.magenta}
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+;=============== mpd ==================
+[module/mpd]
+
+type = internal/mpd
+
+format-online = <icon-prev> <icon-next> <icon-stop> <toggle> <icon-seekb> <icon-seekf> <icon-repeat> <icon-random> 
+format-online-foreground=${colors.cyan}
+format-online-background=${colors.true_black}
+
+label-song-maxlen = 50 
+label-song-ellipsis = true
+
+icon-prev = " "
+icon-next = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-seekb = 
+icon-seekf = 
+
+icon-random = " "
+icon-repeat = 
+
+toggle-on-foreground = ${colors.red} 
+toggle-off-foreground = ${colors.black} 
+
+bar-progress-width = 45
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+
+[module/mpd2]
+
+type = internal/mpd
+
+format-online = <label-song> 
+format-online-foreground=${colors.black}
+format-online-background=${colors.cyan}
+
+label-song-maxlen = 20 
+label-song-ellipsis = true
+label-song = " %artist% "
+
+[module/mpd3]
+
+type = internal/mpd
+
+format-online = <label-song> 
+format-online-foreground=${colors.black}
+format-online-background=${colors.yellow}
+
+label-song-maxlen = 45 
+label-song-ellipsis = true
+label-song = " %title%"
+
+
+;=============== power ===============
+
+[module/powermenu]
+type = custom/menu
+
+label-open = 
+label-open-foreground = #e60053
+label-close =  cancel
+label-close-foreground = #e60053
+label-separator = |
+label-separator-foreground = #55
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+; vim:ft=dosini
+
+;=============== temp =================
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+#format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = #e60053
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+ramp-foreground = #55
+
+;=============== volume ==============
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume><label-volume> 
+
+label = %percentage%
+label-volume =%percentage%
+label-volume-background= ${colors.true_black}
+label-volume-foreground= ${colors.yellow}
+
+label-muted = 0%
+label-muted-background = ${colors.true_black}
+label-muted-foreground = ${colors.yellow}
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-background = ${colors.true_black}
+ramp-volume-foreground = ${colors.yellow}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = │
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = #ff
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #55
+
+;=============== xwindow ==============
+[module/xwindow]
+
+type = internal/xwindow
+format-background = ${colors.yellow}
+format-foreground = ${colors.black}
+format-padding = 1 
+label = %title%
+label-maxlen = 35 

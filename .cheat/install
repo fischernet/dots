@@ -1,0 +1,9 @@
+
+# Keeping a list of explicitly installed packages can be useful to speed up 
+# installation on a new system.
+pacman -Qqe > pkglist.txt
+
+#  To install packages from the list backup, run:
+pacman -S - < pkglist.txt
+
+

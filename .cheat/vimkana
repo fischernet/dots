@@ -1,0 +1,176 @@
+# delete 2 words
+d2w
+
+# change inside sentence (delete the current 1 and enter insert mode)
+cis
+
+# yank inside paragraph (copy the paragraph you're in)
+yip
+
+# Change to open bracket (chagne the text from where you are to the next open bracket)
+ct<
+
+# write changes and exit vim
+:wq OR ZZ
+
+# some sentence shortcuts
+i : insert at cursor
+I : insert at the beginning of the line
+A : append at the end of line
+a : append at the end of cursor
+r : replace 1 char under cursor 
+R : replace N char under cursor 
+s : substitute from where you are to the next cmd (noun)
+S : substitute the enire current line
+
+# jumping to certain char 
+f<: jump fwd and land on char <
+t<: jump fwd and land right before char <
+; : go to next instnace of jumped char
+, : go to prev instance of jumped char
+
+# navigation in line
+O : move to the beginning of the line
+$ : move to the end of the line
+^ : move to the 1st non-blank char in the line
+t": jump to the right before the next quotes
+f": jump and land on the next quotes
+
+# moving by word
+w: move fwd one word
+W: move fwd one word (ignore punctuation)
+e: move fwd to end of word
+E: move fwd to end of word (ignore punctuation)
+b: beginning of word
+B: beginning of word (ignore punctuation)
+ge: prev word-ending
+gE: prev word-ending (ignore punctuation)
+g_: jump to last non-blank char of line
+$ : jump to last char of line
+
+# moving by sentence/paragraph
+) : move fwd 1 sentence
+} : move fwd 1 paragraph
+
+# moving w/in the screen
+# doubling d, c or y operates on whole line!!
+H : move to top of screen
+M : move to middle of screen
+L : move to bottom of screen
+gg: top of file
+G : bottom of file
+^e: 1 line up
+^y: 1 line down
+^d: 1/2 page up
+^u: 1/2 page down
+^f: 1 page up
+^b: 1 page down
+
+# del operations
+x : del char under cursor
+X : del char bfore cursor
+dd: del curr line
+D/% : delete end of line
+dt. : delete from where you are to the '.'
+J : join curr line w/ the next 1 (delete what's b/t)
+
+# undo & redo
+u : undo
+^r: redo
+
+# repeating actions
+dw : deletes a wrd (followed by)
+5. : delete 5 more wrds
+&  : repeats last 'ex' cmd 
+
+# copying/pasting text
+y : yank (copy) whatever's selected
+yy: yank the current line
+p : paste copied/deleted text after curr cursor position
+P : paste copied/deleted text befre curr cursor position
+
+# substitution
+:%s /foo/bar/gc - change 'foo' to 'bar' globally, whole file
+:s /foo/bar/g - change 'foo' to 'bar' on line
+
+# search & replace
+/ : search fwd dir
+? : search bkd dir
+
+# making things repeatable
+# search str: /delinquent
+# append txt: n.
+deliquent DO NOT PAY
+deliquent DO NOT PAY
+deliquent DO NOT PAY
+deliquent DO NOT PAY
+
+# word text objects
+iw: inside word
+aw: around word
+# note: around vs. inside (whether it gets the space next to it as well)
+daw: delete around word
+diw: delete inside word
+
+# sentence text objects
+is: inside sentence
+as: around sentence
+cis: change inside sentence
+
+# text object reference
+iw/aw: words
+is/as: sentences
+ip/ap: paragraphs
+i'/a': single quotes
+i"/a": double quotes
+i(/a(: parenthesis
+it/at: tags
+
+# using visual mode (enter via 'v' key)
+v : char-based
+V : line-based
+^v: paragraph-based
+
+# selecting inside containers
+vi(: selects inside parenthesis
+vi{: selects inside brackets
+2vi{: selects everythign inside the 2nd tier braces 
+# you can employ motions ie. 'w' or ')' to expand selection 
+
+# actions you can perform on visually selected text
+vwwy: enter visual mode, select 2 wrds, copy
+Vjjd: enter line-based v-mode, delete 2 lines
+vip : select entire paragraph
+vipyjjp: visually select paragraph then paste below
+
+# combining visual mode w/ repetition
+# ie. prepend a colon in front of every line
+foo
+:bar
+# add colon to foo, visually select than hit '.' key
+;foo
+;bar
+# add colon to the whole file
+:0i:j0vG
+
+# using macros
+qa: start recording a macro named "a"
+q : stop recording
+@a: play back the macro
+
+# micell	
+# remove whitespace from at end of line
+# delete the ^-M char from the end of files
+:%s/\s\+$//
+
+# changing file type
+set ft=unix
+set ft=html
+set ft=dos
+:set filetype - show current filetype
+
+# external cmds
+# filter text through an ext. cmd
+:!sort %
+# insert output of ext. cmd in the curr file
+:r!which ls
