@@ -3,8 +3,6 @@
 " remap keys
 inoremap jk <ESC> 	      
 
-
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
