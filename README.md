@@ -10,18 +10,18 @@ Managed using a bare git repository. Instructions adapted from here: [Atlasssian
  
 2. Reload the shell setting using that alias.
 
-`source ~/.zshrc`
+	`source ~/.zshrc`
 
 3. Clone this repo.
 
-`git clone --bare https://github.com/fischernet/dots.git $HOME/.cfg`  
+	`git clone --bare https://github.com/fischernet/dots.git $HOME/.cfg`  
 
 4. Checkout the actual content from the bare repo to your $HOME
 
-`dots checkout`
+	`dots checkout`
 
 5. Suppress untracked files
 
-`dots config --local status.showUntrackedFiles no` 
+	`dots config --local status.showUntrackedFiles no` 
  
 
