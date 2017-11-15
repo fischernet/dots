@@ -1,7 +1,7 @@
 !----------------------------------------------------------------------------
-! URxvt Color theme (scheme browser -> xcolors.net -> derp)
-! site: https://terminal.sexy/
-! tips: https://wiki.archlinux.org/index.php/Rxvt-unicode/Tips_and_tricks
+! maintainer: fischernet 
+! src:  github.com/fischernet
+! tips: wiki.archlinux.org/index.php/Rxvt-unicode/Tips_and_tricks
 !---------------------------------------------------------------------------
 
 ! special
@@ -41,10 +41,9 @@
 *.color7:       #f8f8f2
 *.color15:      #f9f8f5
 
-!--------------------------------------------------------------------------
-! URxvt Options
-!
-!---------------------------------------------------------------------------
+!------------------
+! URxvt options
+!------------------
 
 URxvt.font: xft:FiraCode-Retina:size=11
 
@@ -70,10 +69,9 @@ URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 URxvt.secondaryWheel: 1
 
-!---------------------------------------------------------------------------
+!-------------------
 ! URxvt Extensions
-!
-!----------------------------------------------------------------------------
+!-------------------
 
 
 !URxvt.perl-ext-common: tabbed
@@ -82,11 +80,9 @@ URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 0
 URxvt.tabbed.tab-bg: 3
 
-!------------------------------------------------------------------------------
-! ROFI Color theme
-! 
-!------------------------------------------------------------------------------
-
+!-------------------
+! color theme: https://terminal.sexy/
+!-------------------
 
 ! Use extended color scheme
 rofi.color-enabled:                  true
@@ -118,8 +114,3 @@ rofi.width:             1366
 rofi.opacity:           90
 rofi.font: FiraCode 15
 rofi.location: 0
-
-!----------------------------------------------------------------------------
-! other
-!
-!----------------------------------------------------------------------------

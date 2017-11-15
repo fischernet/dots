@@ -1,4 +1,4 @@
-" Maintained by fischernet 
+" Maintainer fischernet 
 
 " remap keys
 inoremap jk <ESC> 	      
