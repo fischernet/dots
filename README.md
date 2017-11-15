@@ -6,7 +6,7 @@ Managed using a bare git repository. Instructions adapted from here: [Atlasssian
 
 1. Commit an alias to your .bashrc or zsh (I use zsh):
 
-`echo 'alias dots="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"' >> $HOME/.zshrc`
+	`echo 'alias dots="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"' >> $HOME/.zshrc`
  
 2. Reload the shell setting using that alias.
 
@@ -14,7 +14,7 @@ Managed using a bare git repository. Instructions adapted from here: [Atlasssian
 
 3. Clone this repo.
 
-`git clone --bare https://github.com/fischernet/dots.git $HOME/.cfg  
+`git clone --bare https://github.com/fischernet/dots.git $HOME/.cfg`  
 
 4. Checkout the actual content from the bare repo to your $HOME
 
