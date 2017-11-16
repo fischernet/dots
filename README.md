@@ -2,7 +2,7 @@
 My Arch Linux Dots.
 
 ## Installing
-Managed using a bare git repository. Instructions adapted from here: [Atlasssian Developer: The best way to store your dotfiles](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
+I manage my dotfiles using a bare git repository. Instructions adapted from here: [Atlasssian Developer: The best way to store your dotfiles](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
 
 1. Commit an alias to your .bashrc or zsh (I use zsh):
 
@@ -24,4 +24,3 @@ Managed using a bare git repository. Instructions adapted from here: [Atlasssian
 
 	`dots config --local status.showUntrackedFiles no` 
  
-
