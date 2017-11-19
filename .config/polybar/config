@@ -47,7 +47,7 @@ border-color = ${colors.background}
 font-0 = FiraCode-Retina:size=11:weight=bold;1 
 font-1 = FiraCode-Retina:pixelsize=15;2 
 font-2 = FontAwesome:pixelsize=13;3
-font-3 = MaterialIcons-Regular:size=14;5
+font-3 = MaterialIcons:size=14;5
 font-4 = Source Han Sans CN:size=13:weight=bold;3 
 
 modules-left = i3 xwindow arw_r1
