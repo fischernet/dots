@@ -49,10 +49,12 @@ font-1 = FiraCode-Retina:pixelsize=15;2
 font-2 = FontAwesome:pixelsize=13;3
 font-3 = MaterialIcons:size=14;5
 font-4 = Source Han Sans CN:size=13:weight=bold;3 
+font-5 = FuraCode Nerd Font Mono:size=15;3 
 
 modules-left = i3 xwindow arw_r1
-modules-center = arw_r2 mpd_1 mpd_2 mpd_3 mpd_4 arw_l1
-modules-right = arw_rr1 cpu arw_l2 mem arw_l3 temp arw_l5 bat arw_l6 fsys arw_l7 vol 
+modules-center = r_black mpd_art1 mpd_art2 mpd_art3 mpd_art4 l_black
+; mod= module l=left & r=right (orientation of arrow art)
+modules-right = l_red1 netup_art l_red2 netup_mod l_green1 netdwn_art l_green2 netdwn_mod l_blue1 cpu_art l_blue2 cpu_mod l_blue1 mem_art l_blue2 mem_mod l_blue1 fsys_art l_blue2 fsys_mod bat_art1 bat_art2 bat_mod bat_art3 l_yellow1 vol_art l_yellow2 vol_mod
 
 offset-x = 0
 offset-y = 0 
@@ -63,61 +65,254 @@ tray-padding = 4
 ;-------------------------------------------------------------------------------
 ;	decorations: arrows1-9
 ;-------------------------------------------------------------------------------
+[module/netup_art]
+; yellow  to black
+type = custom/text
+content = ""
+content-font = 5
+content-foreground = ${colors.black}
+content-background = ${colors.red}
+
+[module/netdwn_art]
+; yellow  to black
+type = custom/text
+content = ""
+content-font = 5
+content-foreground = ${colors.black}
+content-background = ${colors.green}
+
+[module/cpu_art]
+; yellow  to black
+type = custom/text
+content = ""
+content-font = 5
+content-foreground = ${colors.black}
+content-background = ${colors.cyan}
+
+[module/mem_art]
+; yellow  to black
+type = custom/text
+content = ""
+content-font = 5
+content-foreground = ${colors.black}
+content-background = ${colors.cyan}
+
+[module/fsys_art]
+; yellow  to black
+type = custom/text
+content = ""
+content-font = 5
+content-foreground = ${colors.black}
+content-background = ${colors.cyan}
+
+[module/vol_art]
+type = internal/volume
+
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+format-volume = <ramp-volume>
+format-muted = <label-muted> 
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-background = ${colors.yellow}
+ramp-volume-foreground = ${colors.black}
+label-muted =  
+label-muted-foreground = #66
+label-muted-background = ${colors.yellow}
+
+; If defined, it will replace <ramp-volume> when
+; headphones are plugged in to `headphone_control_numid`
+; If undefined, <ramp-volume> will be used for both
+; Only applies if <ramp-volume> is used
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+
+[module/bat_art2]
+type=internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+
+format-discharging = <ramp-capacity>
+format-charging = <animation-charging>
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-0-background = ${colors.red}
+ramp-capacity-0-foreground = ${colors.true_black}
+ramp-capacity-1 = 
+ramp-capacity-1-background = ${colors.yellow}
+ramp-capacity-1-foreground = ${colors.true_black}
+ramp-capacity-2 = 
+ramp-capacity-2-background = ${colors.yellow}
+ramp-capacity-2-foreground = ${colors.true_black}
+ramp-capacity-3 = 
+ramp-capacity-3-background = ${colors.yellow}
+ramp-capacity-3-foreground = ${colors.true_black}
+ramp-capacity-4 = 
+ramp-capacity-4-background = ${colors.cyan}
+ramp-capacity-4-foreground = ${colors.true_black}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-background = ${colors.green}
+animation-charging-foreground = ${colors.true_black}
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+[module/bat_art1]
+type=internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+
+format-discharging = <ramp-capacity>
+format-charging = <animation-charging>
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = ""
+ramp-capacity-0-background = ${colors.true_black}
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1 = ""
+ramp-capacity-1-background = ${colors.true_black}
+ramp-capacity-1-foreground = ${colors.yellow}
+ramp-capacity-2 = ""
+ramp-capacity-2-background = ${colors.true_black}
+ramp-capacity-2-foreground = ${colors.yellow}
+ramp-capacity-3 = ""
+ramp-capacity-3-background = ${colors.true_black}
+ramp-capacity-3-foreground = ${colors.yellow}
+ramp-capacity-4 = ""
+ramp-capacity-4-background = ${colors.true_black}
+ramp-capacity-4-foreground = ${colors.cyan}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
+animation-charging-3 = ""
+animation-charging-4 = ""
+animation-charging-background = ${colors.true_black}
+animation-charging-foreground = ${colors.green}
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+[module/bat_mod]
+type=internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+
+format-discharging = <ramp-capacity>
+format-charging = <animation-charging>
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = ""
+ramp-capacity-0-background = ${colors.red}
+ramp-capacity-0-foreground = ${colors.true_black}
+ramp-capacity-1 = ""
+ramp-capacity-1-background = ${colors.yellow}
+ramp-capacity-1-foreground = ${colors.true_black}
+ramp-capacity-2 = ""
+ramp-capacity-2-background = ${colors.yellow}
+ramp-capacity-2-foreground = ${colors.true_black}
+ramp-capacity-3 = ""
+ramp-capacity-3-background = ${colors.yellow}
+ramp-capacity-3-foreground = ${colors.true_black}
+ramp-capacity-4 = ""
+ramp-capacity-4-background = ${colors.cyan}
+ramp-capacity-4-foreground = ${colors.true_black}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
+animation-charging-3 = ""
+animation-charging-4 = ""
+animation-charging-background = ${colors.green}
+animation-charging-foreground = ${colors.true_black}
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
 [module/arw_r1]
 ; yellow  to black
 type = custom/text
 content = " "
-content-font = 2
+content-font = 5
 content-foreground = ${colors.yellow}
 content-background = ${colors.black}
 
-[module/arw_r2]
-; true_black to black
+[module/r_black]
 type = custom/text
 content = ""
 content-font = 2
 content-foreground = ${colors.black}
 content-background = ${colors.true_black}
 
-[module/arw_rr1]
+[module/l_blue1]
 ; black to yellow 
 type = custom/text
-content = " "
+content = ""
 content-font = 2
-content-foreground = ${colors.yellow}
-content-background = ${colors.black}
+content-foreground = ${colors.cyan}
+content-background = ${colors.true_black}
 
-[module/arw_l1]
-; black to yellow 
+[module/l_blue2]
+; magenta to blue 
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.true_black}
+content-background = ${colors.cyan}
+
+[module/l_black]
 type = custom/text
 content = " "
 content-font = 2
 content-foreground = ${colors.black}
 content-background = ${colors.true_black}
 
-[module/arw_l2]
+[module/l_green1]
 ; blue to black 
 type = custom/text
 content = ""
 content-font = 2
-content-foreground = ${colors.white}
-content-background = ${colors.yellow}
-
-[module/arw_l3]
-; magenta to blue 
-type = custom/text
-content = ""
-content-font = 2
 content-foreground = ${colors.green}
-content-background = ${colors.white}
+content-background = ${colors.true_black}
 
-[module/arw_l4]
-; Red to Magenta
+[module/l_green2]
+; blue to black 
 type = custom/text
 content = ""
 content-font = 2
-content-foreground = ${colors.white}
-content-background = ${colors.magenta}
+content-foreground = ${colors.true_black}
+content-background = ${colors.green}
+
+[module/l_red1]
+; blue to black 
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.red}
+content-background = ${colors.black}
+
+[module/l_red2]
+; blue to black 
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.true_black}
+content-background = ${colors.red}
 
 [module/arw_l5]
 ; White to Red
@@ -127,21 +322,19 @@ content-font = 2
 content-foreground = ${colors.red}
 content-background = ${colors.green}
 
-[module/arw_l6]
-; red to green
+[module/l_yellow1]
 type = custom/text
 content = ""
 content-font = 2
-content-foreground = ${colors.magenta}
-content-background = ${colors.red}
+content-foreground = ${colors.yellow}
+content-background = ${colors.true_black}
 
-[module/arw_l7]
-; trueblack to red
+[module/l_yellow2]
 type = custom/text
 content = ""
 content-font = 2 
 content-foreground = ${colors.true_black}
-content-background = ${colors.magenta}
+content-background = ${colors.yellow}
 
 ;-------------------------------------------------------------------------------
 ;	modules
@@ -187,7 +380,7 @@ format-padding = 1
 label = %title%
 label-maxlen = 35
 
-[module/mpd_1]
+[module/mpd_art1]
 type = internal/mpd
 
 format-online = <icon-prev> <icon-next> <icon-stop> <toggle> <icon-seekb> <icon-seekf> <icon-repeat> <icon-random> 
@@ -215,7 +408,7 @@ bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
 
-[module/mpd_2]
+[module/mpd_art2]
 type = internal/mpd
 
 format-online = <label-song> 
@@ -226,7 +419,7 @@ label-song-maxlen = 20
 label-song-ellipsis = true
 label-song = " %artist% "
 
-[module/mpd_3]
+[module/mpd_art3]
 type = internal/mpd
 
 format-online = <label-song> 
@@ -237,7 +430,7 @@ label-song-maxlen = 40
 label-song-ellipsis = true
 label-song = " %title% "
 
-[module/mpd_4]
+[module/mpd_art4]
 type = internal/mpd
 
 format-online = <label-time> 
@@ -247,41 +440,54 @@ format-online-background=${colors.true_black}
 label-song-maxlen = 10 
 label-time = " %elapsed%/%total%"
 
-[module/fsys]
+[module/fsys_mod]
 type = internal/fs
 mount-0 = /
 interval = 25
 
 format-mounted = <label-mounted>
-label-mounted = "%fsname%:%free%"
-label-mounted-background = ${colors.magenta}
-label-mounted-foreground = ${colors.true_black}
+label-mounted = "%percentage_free%%"
+label-mounted-background = ${colors.true_black}
+label-mounted-foreground = ${colors.cyan}
 
-[module/cpu]
+[module/cpu_mod]
 type = internal/cpu
 interval = 1
 format = <label>
-label = cpu:%percentage%% 
-label-background = ${colors.yellow}
-label-foreground = ${colors.true_black}
+label = "%percentage%%"
+label-background = ${colors.true_black}
+label-foreground = ${colors.cyan}
 
-[module/mem]
+
+[module/mem_mod]
 type = internal/memory
 interval = 1
 format = <label>
-label = mem:%percentage_used%%
-label-background = ${colors.white}
-label-foreground = ${colors.true_black}
+label = "%percentage_used%%"
+label-background = ${colors.true_black}
+label-foreground = ${colors.cyan}
 
-[module/net_1]
+[module/netdwn_mod]
 type = internal/network
 interface = wls8
 interval = 3.0
-label-connected = %ifname%:%signal%% 
 
 format-connected = <label-connected>
-format-connected-foreground=${colors.black}
-format-connected-background=${colors.yellow}
+format-connected-foreground=${colors.green}
+format-connected-background=${colors.true_black}
+
+label-connected = %downspeed:0%
+
+[module/netup_mod]
+type = internal/network
+interface = wls8
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-foreground=${colors.red}
+format-connected-background=${colors.true_black}
+
+label-connected = %upspeed:0%
 
 [module/temp]
 type = internal/temperature
@@ -301,7 +507,7 @@ label-warn = %temperature%
 label-warn-background = ${colors.green} 
 label-warn-foreground = ${colors.true_black}
 
-[module/bat]
+[module/bat_art3]
 type=internal/battery
 full-at = 99
 battery = BAT0
@@ -310,15 +516,15 @@ adapter = ADP1
 format-charging= <label-charging>
 format-discharging = <label-discharging>
 
-label-charging = "chg:%percentage%%"
-label-discharging = "bat:%percentage%%"
+label-charging = "%percentage%%"
+label-discharging = "%percentage%%"
 
-label-discharging-background = ${colors.red}
-label-discharging-foreground = ${colors.true_black}
-label-charging-background = ${colors.red}
-label-charging-foreground = ${colors.true_black}
+label-discharging-background = ${colors.true_black}
+label-discharging-foreground = ${colors.yellow}
+label-charging-background = ${colors.true_black}
+label-charging-foreground = ${colors.green}
 
-[module/vol]
+[module/vol_mod]
 type = internal/volume
 
 master-soundcard = default
@@ -329,17 +535,12 @@ format-volume = <label-volume>
 format-muted = <label-muted> 
 
 label-volume = "%percentage%%"
-label-volume-foreground = ${colors.cyan}
+label-volume-foreground = ${colors.yellow}
 label-volume-background = ${colors.true_black}
 
 label-muted = %percentage%%
 label-muted-foreground = #66
 label-muted-background = ${colors.true_black}
-
-; Only applies if <ramp-volume> is used
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
 
 ; If defined, it will replace <ramp-volume> when
 ; headphones are plugged in to `headphone_control_numid`
