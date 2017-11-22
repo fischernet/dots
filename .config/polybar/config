@@ -52,7 +52,7 @@ font-4 = Source Han Sans CN:size=13:weight=bold;3
 font-5 = FuraCode Nerd Font Mono:size=15;3 
 
 modules-left = i3 xwindow r_yellow
-modules-center = r_black mpd_art1 mpd_art2 mpd_art3 l_yellow2 mpd_art4 l_black
+modules-center = r_black mpd_art1 r_blue1 mpd_art2 mpd_art3 l_yellow2 mpd_art4 l_black
 ; mod= module l=left & r=right (orientation of arrow art)
 modules-right = l_red1 netup_art l_red2 netup_mod l_green1 netdwn_art l_green2 netdwn_mod l_blue1 cpu_art l_blue2 cpu_mod l_blue1 mem_art l_blue2 mem_mod l_blue1 fsys_art l_blue2 fsys_mod bat_art1 bat_art2 bat_mod bat_art3 l_yellow1 vol_art l_yellow2 vol_mod
 
@@ -251,6 +251,13 @@ content-font = 2
 content-foreground = ${colors.black}
 content-background = ${colors.true_black}
 
+[module/r_blue1]
+type = custom/text
+content = ""
+content-font = 2
+content-foreground = ${colors.true_black}
+content-background = ${colors.cyan}
+
 [module/l_blue1]
 type = custom/text
 content = ""
@@ -423,7 +430,7 @@ format-online-foreground=${colors.cyan}
 format-online-background=${colors.true_black}
 
 label-song-maxlen = 10 
-label-time = " %elapsed%/%total%"
+label-time = " %elapsed%/%total% "
 
 [module/fsys_mod]
 type = internal/fs
