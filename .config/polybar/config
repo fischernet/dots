@@ -156,7 +156,7 @@ ramp-capacity-3 = 
 ramp-capacity-3-background = ${colors.yellow}
 ramp-capacity-3-foreground = ${colors.true_black}
 ramp-capacity-4 = 
-ramp-capacity-4-background = ${colors.cyan}
+ramp-capacity-4-background = ${colors.yellow}
 ramp-capacity-4-foreground = ${colors.true_black}
 
 ; Only applies if <animation-charging> is used
@@ -194,7 +194,7 @@ ramp-capacity-3-background = ${colors.true_black}
 ramp-capacity-3-foreground = ${colors.yellow}
 ramp-capacity-4 = ""
 ramp-capacity-4-background = ${colors.true_black}
-ramp-capacity-4-foreground = ${colors.cyan}
+ramp-capacity-4-foreground = ${colors.yellow}
 
 ; Only applies if <animation-charging> is used
 animation-charging-0 = ""
@@ -230,7 +230,7 @@ ramp-capacity-3 = ""
 ramp-capacity-3-background = ${colors.yellow}
 ramp-capacity-3-foreground = ${colors.true_black}
 ramp-capacity-4 = ""
-ramp-capacity-4-background = ${colors.cyan}
+ramp-capacity-4-background = ${colors.yellow}
 ramp-capacity-4-foreground = ${colors.true_black}
 
 ; Only applies if <animation-charging> is used
