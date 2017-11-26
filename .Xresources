@@ -41,6 +41,7 @@
 *.color7:       #f8f8f2
 *.color15:      #f9f8f5
 
+
 !------------------
 ! URxvt options
 !------------------
@@ -114,3 +115,4 @@ rofi.width:             1366
 rofi.opacity:           90
 rofi.font: FiraCode 15
 rofi.location: 0
+
