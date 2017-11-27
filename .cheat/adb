@@ -4,10 +4,13 @@
 ./adb devices
 
 # installs apk on connected device based on provided dir
-./adb install '/home/webonise/Downloads/some.apk'
+./adb install '/host-path/install.apk'
 
-# copies a file from host to connected device
-./adb push '/home/webonise/Downloads/one.jpg' '/sdcard/Download/'
+# copies a file/dir from host to connected device
+./adb push '/host-path/' '/sdcard/connected-device-path/'
+
+# copies a file/dir from connected devices to host
+./adb pull '/sdcard/connected-device-path/' '/host-path/'
 
 # fastboot:   diagnostic protocol included with the SDK package used primarily to modify the flash filesystem via a USB connection from host computer. 
 # It requires that the device be started in a boot loader or Secondary Program Loader mode, 
