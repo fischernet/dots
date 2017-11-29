@@ -1,0 +1,46 @@
+# ENV variables
+browser $BROWSER
+
+# saved articles
+save-path ~/.newsbeuter/saved_articles
+
+# vim like navigation
+bind-key j down
+bind-key k up
+bind-key m toggle-show-read-feeds
+bind-key ^D pagedown
+bind-key ^U pageup
+bind-key / open-search tagselection
+
+bind-key i sort
+bind-key I rev-sort
+
+bind-key g home all
+bind-key G end all
+
+unbind-key l
+bind-key l open
+bind-key h quitj
+bind-key ESC hard-quit
+
+# formatting & colorization
+color background          color1 color0 
+color listnormal          color3 color0 
+color listfocus           color16 color3 bold
+color listnormal_unread   color15 color0 
+color listfocus_unread    color16 color3 bold
+color info                color16 color6 bold
+color article             color15 color0 
+
+# macros
+# Note: macro prefix key ( default: , )
+
+# read reddit comments w/ rtv (reddit terminal viewer)
+macro r set browser "tmux split-window && tmux send-keys 'rtv -l %u && tmux kill-pane\n'"; open-in-browser ; set browser "$BROWSER %u" 
+
+# open videos w/ mpv 
+macro p set browser "mpv --no-border %u"; open-in-browser ; set browser "$BROWSER %u"
+#macro p set browser "tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-10 %u"; open-in-browser ; set browser "$BROWSER %u"
+
+# copy url to clipboard "yank"
+macro y set browser "echo -n %u | xclip -selection clipboard"; open-in-browser ; set browser "$BROWSER %u"
