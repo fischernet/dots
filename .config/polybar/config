@@ -407,7 +407,7 @@ format-online = <label-song>
 format-online-foreground=${colors.black}
 format-online-background=${colors.cyan}
 
-label-song-maxlen = 20 
+label-song-maxlen = 15 
 label-song-ellipsis = true
 label-song = " %artist% "
 
