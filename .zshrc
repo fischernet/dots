@@ -106,6 +106,6 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-neofetch --caca ~/Pictures/fischer_avatar.png 
+neofetch --caca ~/Pictures/avatar_landscape_med.png 
 
 alias dots='/usr/bin/git --git-dir=/home/fischer/.cfg/ --work-tree=/home/fischer'

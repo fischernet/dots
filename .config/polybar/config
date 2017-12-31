@@ -49,7 +49,7 @@ font-1 = FiraCode-Retina:pixelsize=15;2
 font-2 = FontAwesome:pixelsize=13;3
 font-3 = MaterialIcons:size=14;5
 font-4 = Source Han Sans CN:size=13:weight=bold;3 
-font-5 = FuraCode Nerd Font Mono:size=15;3 
+font-5 = FuraCode Nerd Font Mono:size=18;3 
 
 modules-left = i3 xwindow r_yellow
 modules-center = r_black mpd_art1 r_blue1 mpd_art2 mpd_art3 l_yellow2 mpd_art4 l_black
