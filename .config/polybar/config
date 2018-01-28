@@ -30,7 +30,8 @@ margin-bottom = 5
 ;	top bar
 ;-------------------------------------------------------------------------------
 [bar/top]
-monitor = eDP1
+;monitor = eDP1 
+monitor = ${env:MONITOR:}
 bottom = false
 fixed-center = true
 
